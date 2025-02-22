@@ -18,17 +18,17 @@
 
     <script>
         const questions = [
-            {   
-                question: "Chuỗi cung ứng là gì?",
-                options: ["Quá trình vận chuyển hàng hóa", "Tập hợp các hoạt động từ sản xuất đến tiêu thụ", "Chỉ liên quan đến logistics", "Một loại hình thương mại điện tử"],
-                correct: [1] 
-            },
-            {
-                question: "Chọn các thành phần chính của chuỗi cung ứng:",
-                options: ["Nhà cung cấp", "Nhà sản xuất", "Người tiêu dùng", "Nhân viên kế toán"],
-                correct: [0, 1, 2] 
-            }
+            { question: "Chuỗi cung ứng là gì?", options: ["Quá trình vận chuyển hàng hóa", "Tập hợp các hoạt động từ sản xuất đến tiêu thụ", "Chỉ liên quan đến logistics", "Một loại hình thương mại điện tử"], correct: [1] },
+            { question: "Chọn các thành phần chính của chuỗi cung ứng:", options: ["Nhà cung cấp", "Nhà sản xuất", "Người tiêu dùng", "Nhân viên kế toán"], correct: [0, 1, 2] },
         ];
+        
+        for (let i = 3; i <= 100; i++) {
+            questions.push({
+                question: `Câu hỏi số ${i}?`,
+                options: ["Đáp án A", "Đáp án B", "Đáp án C", "Đáp án D"],
+                correct: [Math.floor(Math.random() * 4)]
+            });
+        }
 
         function loadQuiz() {
             const quizContainer = document.getElementById("quiz");
