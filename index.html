@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trắc nghiệm Quản lý Chuỗi Cung Ứng</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .question { margin-bottom: 20px; }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+    <h1>Bài kiểm tra Quản lý Chuỗi Cung Ứng</h1>
+    <div id="quiz"></div>
+    <button onclick="submitQuiz()">Nộp bài</button>
+    <p id="result"></p>
+
+    <script>
+        const questions = [
+            {   
+                question: "Chuỗi cung ứng là gì?",
+                options: ["Quá trình vận chuyển hàng hóa", "Tập hợp các hoạt động từ sản xuất đến tiêu thụ", "Chỉ liên quan đến logistics", "Một loại hình thương mại điện tử"],
+                correct: [1] 
+            },
+            {
+                question: "Chọn các thành phần chính của chuỗi cung ứng:",
+                options: ["Nhà cung cấp", "Nhà sản xuất", "Người tiêu dùng", "Nhân viên kế toán"],
+                correct: [0, 1, 2] 
+            }
+        ];
+
+        function loadQuiz() {
+            const quizContainer = document.getElementById("quiz");
+            questions.forEach((q, index) => {
+                let questionHTML = `<div class='question'>
+                    <p>${index + 1}. ${q.question}</p>`;
+                q.options.forEach((option, i) => {
+                    questionHTML += `<label>
+                        <input type='checkbox' name='q${index}' value='${i}'> ${option}
+                    </label><br>`;
+                });
+                questionHTML += `</div>`;
+                quizContainer.innerHTML += questionHTML;
+            });
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            questions.forEach((q, index) => {
+                const selected = [...document.querySelectorAll(`input[name='q${index}']:checked`)].map(e => parseInt(e.value));
+                if (JSON.stringify(selected.sort()) === JSON.stringify(q.correct.sort())) {
+                    score++;
+                }
+            });
+            document.getElementById("result").innerText = `Điểm số của bạn: ${score}/${questions.length}`;
+        }
+
+        loadQuiz();
+    </script>
+</body>
+</html>
